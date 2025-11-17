@@ -1,0 +1,613 @@
+:root {
+    /* Paleta de Colores: Dark Mode Profesional */
+    --color-bg-dark: #0a0a0a; /* Fondo principal más oscuro */
+    --color-bg-light: #151515; /* Fondo de paneles */
+    --color-bg-card: #1e1e1e; /* Fondo de tarjetas */
+    --color-accent: #00d4aa; /* Verde profesional (menos neón) */
+    --color-accent-light: #00ffcc; /* Verde para highlights */
+    --color-accent-dark: #007a5c; /* Verde oscuro para hover */
+    --color-secondary: #4a6cf7; /* Azul para elementos secundarios */
+    --color-text-primary: #f0f0f0; /* Texto principal más claro */
+    --color-text-secondary: #a0a0a0; /* Texto secundario */
+    --color-text-muted: #666; /* Texto atenuado */
+    --color-border: #2a2a2a; /* Bordes sutiles */
+    --color-border-light: #3a3a3a; /* Bordes más claros */
+    --color-highlight: rgba(0, 212, 170, 0.1); /* Fondo de elementos activos */
+    --color-success: #00c853; /* Verde para éxito */
+    --color-warning: #ffcc00; /* Amarillo para advertencias */
+    --color-error: #ff4444; /* Rojo para errores */
+
+    /* Tipografía */
+    --font-family-code: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    --font-family-ui: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-size-base: 16px;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 600;
+
+    /* Espaciado y dimensiones */
+    --border-radius-sm: 4px;
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 48px;
+
+    /* Efectos */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* -------------------------------------- */
+/* RESET Y ESTILOS BASE */
+/* -------------------------------------- */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-ui);
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-primary);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+}
+
+/* -------------------------------------- */
+/* TIPOGRAFÍA */
+/* -------------------------------------- */
+
+h1 {
+    text-align: center;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xxl);
+    font-size: 2.5rem;
+    font-weight: var(--font-weight-bold);
+    position: relative;
+    padding-bottom: var(--spacing-md);
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+    border-radius: 2px;
+}
+
+h2 {
+    color: var(--color-text-primary);
+    margin-top: 0;
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-medium);
+    display: flex;
+    align-items: center;
+}
+
+h2::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 20px;
+    background: var(--color-accent);
+    margin-right: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+}
+
+h3 {
+    color: var(--color-accent);
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-family-code);
+    letter-spacing: 0.5px;
+}
+
+/* -------------------------------------- */
+/* ENTRADA DE TEXTO Y CONTROLES */
+/* -------------------------------------- */
+
+#inputText {
+    width: 100%;
+    min-height: 180px;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    background-color: var(--color-bg-light);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    resize: vertical;
+    font-family: var(--font-family-code);
+    transition: var(--transition);
+    line-height: 1.5;
+}
+
+#inputText:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(0, 212, 170, 0.2);
+}
+
+#inputText::placeholder {
+    color: var(--color-text-muted);
+}
+
+.controls {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xxl);
+    justify-content: center;
+}
+
+button {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-medium);
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
+    }
+}
+
+/* Botón principal: Detectar */
+#detectBtn {
+    background-color: var(--color-accent);
+    color: var(--color-bg-dark);
+    box-shadow: var(--shadow);
+}
+
+#detectBtn:hover {
+    background-color: var(--color-accent-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+#detectBtn:active {
+    transform: translateY(0);
+}
+
+/* Botón secundario: Limpiar */
+#clearBtn {
+    background-color: transparent;
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-light);
+}
+
+#clearBtn:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-text-primary);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* -------------------------------------- */
+/* PANELES GENERALES Y LAYOUT */
+/* -------------------------------------- */
+
+.panel {
+    background-color: var(--color-bg-light);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow);
+    margin-bottom: var(--spacing-xl);
+    transition: var(--transition);
+}
+
+.panel:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Estructura de doble columna en escritorio */
+@media (min-width: 1000px) {
+    .content-area {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: var(--spacing-xl);
+    }
+
+    #results {
+        grid-column: 1 / 2;
+    }
+
+    #automata {
+        grid-column: 2 / 3;
+    }
+}
+
+/* -------------------------------------- */
+/* SECCIÓN RESULTADOS */
+/* -------------------------------------- */
+
+#tables {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+}
+
+#tables > div {
+    background-color: var(--color-bg-card);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--color-accent);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+#tables > div:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+ul li {
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+    font-family: var(--font-family-code);
+    word-break: break-all;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+}
+
+ul li::before {
+    content: '▸';
+    color: var(--color-accent);
+    margin-right: var(--spacing-sm);
+    font-size: 0.8rem;
+}
+
+ul li:hover {
+    background-color: var(--color-highlight);
+    border-radius: var(--border-radius-sm);
+    padding-left: var(--spacing-sm);
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+
+/* -------------------------------------- */
+/* SECCIÓN AUTÓMATAS (VISUALIZACIÓN) */
+/* -------------------------------------- */
+
+.automata-controls {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.automata-controls button {
+    background-color: var(--color-bg-card);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-sm) var(--spacing-md);
+    flex-grow: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: var(--font-weight-normal);
+}
+
+.automata-controls button:hover {
+    background-color: var(--color-highlight);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.automata-controls button.active {
+    background-color: var(--color-highlight);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+#graphArea {
+    min-height: 300px;
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-xl);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    padding: var(--spacing-lg);
+    position: relative;
+}
+
+#graphArea::before {
+    content: 'Visualización del Autómata';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+#graphArea:not(:empty)::before {
+    display: none;
+}
+
+/* Estilos para el SVG generado por Viz.js */
+#graphArea svg {
+    max-width: 100%;
+    height: auto;
+}
+
+#graphArea svg path, 
+#graphArea svg polygon, 
+#graphArea svg ellipse {
+    stroke: var(--color-text-primary) !important;
+    fill: transparent !important;
+}
+
+#graphArea svg text {
+    fill: var(--color-text-primary) !important;
+    stroke: none !important;
+}
+
+#graphArea svg .node {
+    fill: var(--color-bg-card) !important;
+}
+
+/* -------------------------------------- */
+/* SIMULADOR (DFA) */
+/* -------------------------------------- */
+
+.simulator {
+    padding: var(--spacing-lg);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius);
+    background-color: var(--color-bg-card);
+    position: relative;
+}
+
+.simulator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--color-accent), var(--color-secondary));
+    border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
+}
+
+.simulator h3 {
+    color: var(--color-accent);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.simulator h3::before {
+    content: '⚙️';
+    margin-right: var(--spacing-sm);
+    font-size: 1rem;
+}
+
+#simInput {
+    width: 100%;
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    background-color: var(--color-bg-light);
+    border: 1px solid var(--color-border-light);
+    color: var(--color-text-primary);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: var(--font-family-code);
+    transition: var(--transition);
+}
+
+#simInput:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(0, 212, 170, 0.2);
+}
+
+.simulator-controls {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+#stepBtn, #runBtn {
+    flex-grow: 1;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+#stepBtn {
+    background-color: var(--color-secondary);
+    color: white;
+}
+
+#stepBtn:hover {
+    background-color: #3a5ae0;
+    transform: translateY(-2px);
+}
+
+#runBtn {
+    background-color: var(--color-accent);
+    color: var(--color-bg-dark);
+}
+
+#runBtn:hover {
+    background-color: var(--color-accent-light);
+    transform: translateY(-2px);
+}
+
+#simOutput {
+    min-height: 100px;
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-light);
+    border-radius: var(--border-radius);
+    white-space: pre-wrap;
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+    font-family: var(--font-family-code);
+    line-height: 1.5;
+    transition: var(--transition);
+}
+
+#simOutput.success {
+    border-left: 4px solid var(--color-success);
+}
+
+#simOutput.error {
+    border-left: 4px solid var(--color-error);
+}
+
+/* -------------------------------------- */
+/* ESTADOS Y ANIMACIONES */
+/* -------------------------------------- */
+
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* -------------------------------------- */
+/* RESPONSIVE ADJUSTMENTS */
+/* -------------------------------------- */
+
+@media (max-width: 768px) {
+    .container {
+        padding: var(--spacing-md);
+    }
+    
+    h1 {
+        font-size: 2rem;
+        margin-bottom: var(--spacing-xl);
+    }
+    
+    .controls {
+        flex-direction: column;
+    }
+    
+    #tables {
+        grid-template-columns: 1fr;
+    }
+    
+    .automata-controls {
+        flex-direction: column;
+    }
+    
+    .simulator-controls {
+        flex-direction: column;
+    }
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg-light);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border-light);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+}

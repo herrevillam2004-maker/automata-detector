@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Detector de patrones en RRSS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/viz.js@3.0.0/viz.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/viz.js@3.0.0/full.render.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Detector de patrones en redes sociales</h1>
+    <textarea id="inputText" placeholder="@ana habló con @carlos sobre #IA\n@carlos respondió con https://ia.com"></textarea>
+    <div class="controls">
+      <button id="detectBtn">Detectar patrones</button>
+      <button id="clearBtn">Limpiar</button>
+    </div>
+
+    <section id="results" class="panel">
+      <h2>Resultados</h2>
+      <div id="tables">
+        <div><h3>Usuarios</h3><ul id="usersList"></ul></div>
+        <div><h3>Hashtags</h3><ul id="hashtagsList"></ul></div>
+        <div><h3>URLs</h3><ul id="urlsList"></ul></div>
+        <div><h3>Correos</h3><ul id="emailsList"></ul></div>
+      </div>
+    </section>
+
+    <section id="automata" class="panel">
+      <h2>Autómatas</h2>
+      <div class="automata-controls">
+        <button data-which="hashtag" class="showAuto">Ver autómata de Hashtag</button>
+        <button data-which="user" class="showAuto">Ver autómata de Usuario</button>
+      </div>
+      <div id="graphArea"></div>
+
+      <div id="simulator" class="simulator">
+        <h3>Simulación (DFA)</h3>
+        <input id="simInput" placeholder="#IA o @usuario" />
+        <button id="stepBtn">Simular paso a paso</button>
+        <button id="runBtn">Ejecutar completo</button>
+        <div id="simOutput"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
