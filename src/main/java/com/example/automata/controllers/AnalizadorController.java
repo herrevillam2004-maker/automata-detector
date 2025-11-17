@@ -12,6 +12,7 @@ import java.util.*;
 import java.util.regex.*;
 import java.awt.image.BufferedImage;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class AnalizadorController {
