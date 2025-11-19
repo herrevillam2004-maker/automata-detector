@@ -1,23 +1,20 @@
 package com.example.automata.automaton;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AutomataRecorder {
-    public static class Transition {
-        public String from;
-        public String to;
-        public String label;
 
-        public Transition(String from, String to, String label) {
-            this.from = from;
-            this.to = to;
-            this.label = label;
-        }
+    private final List<Transition> transitions = new ArrayList<>();
+
+    public void record(String fromState, String input, String toState) {
+        transitions.add(new Transition(fromState, toState, input));
     }
 
-    public List<Transition> transitions = new ArrayList<>();
-
-    public void add(String from, String to, String label) {
-        transitions.add(new Transition(from, to, label));
+    public List<Transition> getTransitions() {
+        return transitions;
     }
+
+    // Nombres EXACTOS que usa GraphvizGenerator
+    public record Transition(String fromState, String toState, String input) {}
 }
