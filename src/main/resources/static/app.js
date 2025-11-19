@@ -19,13 +19,13 @@ detectBtn.addEventListener("click", async () => {
   try {
      graphArea.innerHTML = `En proceso...`;
     // Consumir nuevo endpoint /api/analizar
-    const resp = await fetch("http://localhost:8080/api/analizar", {
-      method: "POST", // o PUT según soporte backend
+    const resp = await fetch("http://localhost:8080/api/extraer", {
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ texto: text })
     });
 
-    if (!resp.ok) throw new Error("Error al consumir /api/analizar");
+    if (!resp.ok) throw new Error("Error al consumir /api/extraer: " + resp.statusText);
     const json = await resp.json();
 
     // Extraer detecciones
@@ -45,7 +45,7 @@ detectBtn.addEventListener("click", async () => {
 
     graphArea.innerHTML = `CARGANDO...`;
     // Opcional: obtener imagen del autómata
-    const imgResp = await fetch("http://localhost:8080/api/automata");
+    const imgResp = await fetch("http://localhost:8080/api/analizar");
     if (imgResp.ok) {
       const blob = await imgResp.blob();
       const imgUrl = URL.createObjectURL(blob);
