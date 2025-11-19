@@ -45,7 +45,11 @@ detectBtn.addEventListener("click", async () => {
 
     graphArea.innerHTML = `CARGANDO...`;
     // Opcional: obtener imagen del autómata
-    const imgResp = await fetch("http://localhost:8080/api/analizar");
+    const imgResp = await fetch("http://localhost:8080/api/analizar", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ texto: text })
+    });
     if (imgResp.ok) {
       const blob = await imgResp.blob();
       const imgUrl = URL.createObjectURL(blob);
