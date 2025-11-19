@@ -4,7 +4,6 @@ const inputText = document.getElementById("inputText");
 const usersList = document.getElementById("usersList");
 const hashtagsList = document.getElementById("hashtagsList");
 const urlsList = document.getElementById("urlsList");
-const emailsList = document.getElementById("emailsList");
 const graphArea = document.getElementById("graphArea");
 const simInput = document.getElementById("simInput");
 const stepBtn = document.getElementById("stepBtn");
@@ -18,6 +17,7 @@ detectBtn.addEventListener("click", async () => {
   if (!text) return;
 
   try {
+     graphArea.innerHTML = `En proceso...`;
     // Consumir nuevo endpoint /api/analizar
     const resp = await fetch("http://localhost:8080/api/analizar", {
       method: "POST", // o PUT según soporte backend
@@ -32,8 +32,8 @@ detectBtn.addEventListener("click", async () => {
     const detections = {
       users: json.menciones || [],
       hashtags: json.hashtags || [],
-      urls: json.urls || [],
-      emails: json.emails || [] // si el endpoint devuelve emails
+      urls: json.urls || []
+  
     };
 
     automataDots = json.automata || {};
@@ -42,20 +42,23 @@ detectBtn.addEventListener("click", async () => {
     fillList(usersList, detections.users);
     fillList(hashtagsList, detections.hashtags);
     fillList(urlsList, detections.urls);
-    fillList(emailsList, detections.emails);
 
+    graphArea.innerHTML = `CARGANDO...`;
     // Opcional: obtener imagen del autómata
     const imgResp = await fetch("http://localhost:8080/api/automata");
     if (imgResp.ok) {
       const blob = await imgResp.blob();
       const imgUrl = URL.createObjectURL(blob);
-      // Aquí podrías mostrar la imagen en algún div si quieres
-      // por ejemplo: document.getElementById('graphArea').innerHTML = `<img src="${imgUrl}" />`;
+      // Aquí podrías mostrar la imagen en algún div si quieres---max-width:50vw
+      graphArea.innerHTML = `<img src="${imgUrl}" style=" max-height:50vh; width:auto; height:auto; display:block; margin:0 auto;" />`;
+      console.log("Imagen del autómata cargada: " + imgUrl);
+    }else{
+      alert("Imagen del autómata no disponible");
     }
 
   } catch (error) {
     console.error(error);
-    alert("Ocurrió un error al consumir los endpoints");
+    alert("Ocurrió un error al consumir los endpoints" + error.message);
   }
 });
 
@@ -65,7 +68,6 @@ clearBtn.addEventListener("click", () => {
   fillList(usersList, []);
   fillList(hashtagsList, []);
   fillList(urlsList, []);
-  fillList(emailsList, []);
   graphArea.innerHTML = "";
   simOutput.innerHTML = "";
 });
@@ -88,7 +90,7 @@ document.querySelectorAll(".showAuto").forEach(btn => {
     const which = btn.getAttribute("data-which");
     const dot = automataDots[which];
     if (!dot) {
-      graphArea.innerHTML = "<p style='color:#777'>Primero presiona 'Detectar patrones' para cargar autómatas desde el servidor.</p>";
+      graphArea.innerHTML = "<p style='color:#777'>Primero presiona 'Detectar patrones' para cargar vista desde el automata.</p>";
       return;
     }
     try {
