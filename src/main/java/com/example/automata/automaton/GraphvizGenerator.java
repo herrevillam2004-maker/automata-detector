@@ -1,38 +1,55 @@
 package com.example.automata.automaton;
 
-import guru.nidi.graphviz.attribute.*;
-import guru.nidi.graphviz.attribute.Rank.RankDir;
-import guru.nidi.graphviz.engine.*;
-import guru.nidi.graphviz.model.*;
+import guru.nidi.graphviz.attribute.Label;
+import guru.nidi.graphviz.attribute.Rank;
+import guru.nidi.graphviz.attribute.Shape;
+import guru.nidi.graphviz.engine.Format;
+import guru.nidi.graphviz.engine.Graphviz;
+import guru.nidi.graphviz.model.Graph;
+import guru.nidi.graphviz.model.Node;
+
+import javax.imageio.ImageIO;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.*;
-import static guru.nidi.graphviz.model.Factory.*;
-import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static guru.nidi.graphviz.model.Factory.graph;
+import static guru.nidi.graphviz.model.Factory.node;
+import static guru.nidi.graphviz.model.Factory.to;
 
 public class GraphvizGenerator {
 
-    public BufferedImage generatePngFromTransitions(List<AutomataRecorder.Transition> transitions) throws IOException {
+    public byte[] generatePngBytes(List<AutomataRecorder.Transition> transitions) throws IOException {
+
         Map<String, Node> nodes = new HashMap<>();
 
-        // Crear nodos únicos
         for (AutomataRecorder.Transition t : transitions) {
-            nodes.putIfAbsent(t.from, node(t.from).with(Shape.CIRCLE));
-            nodes.putIfAbsent(t.to, node(t.to).with(Shape.CIRCLE));
+            nodes.putIfAbsent(t.fromState(), node(t.fromState()).with(Shape.CIRCLE));
+            nodes.putIfAbsent(t.toState(), node(t.toState()).with(Shape.CIRCLE));
         }
 
-        // Crear aristas
         Graph g = graph("Automata")
                 .directed()
-                .graphAttr().with(Rank.dir(RankDir.LEFT_TO_RIGHT));
+                .graphAttr()
+                .with(Rank.dir(Rank.RankDir.LEFT_TO_RIGHT));
 
         for (AutomataRecorder.Transition t : transitions) {
-            g = g.with(nodes.get(t.from).link(to(nodes.get(t.to)).with(Label.of(t.label))));
+            g = g.with(
+                    nodes.get(t.fromState())
+                            .link(to(nodes.get(t.toState())).with(Label.of(t.input())))
+            );
         }
 
-        // Exportar como PNG
-        return Graphviz.fromGraph(g)
-                .width(800)
+        // Render PNG as BufferedImage (exists in all versions!)
+        var img = Graphviz.fromGraph(g)
                 .render(Format.PNG)
                 .toImage();
+
+        // Convert to byte[]
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(img, "png", baos);
+        return baos.toByteArray();
     }
 }
