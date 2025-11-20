@@ -1,21 +1,21 @@
 :root {
     /* Paleta de Colores: Dark Mode Profesional */
-    --color-bg-dark: #0a0a0a; /* Fondo principal más oscuro */
-    --color-bg-light: #151515; /* Fondo de paneles */
-    --color-bg-card: #1e1e1e; /* Fondo de tarjetas */
-    --color-accent: #00d4aa; /* Verde profesional (menos neón) */
-    --color-accent-light: #00ffcc; /* Verde para highlights */
-    --color-accent-dark: #007a5c; /* Verde oscuro para hover */
-    --color-secondary: #4a6cf7; /* Azul para elementos secundarios */
-    --color-text-primary: #f0f0f0; /* Texto principal más claro */
-    --color-text-secondary: #a0a0a0; /* Texto secundario */
-    --color-text-muted: #666; /* Texto atenuado */
-    --color-border: #2a2a2a; /* Bordes sutiles */
-    --color-border-light: #3a3a3a; /* Bordes más claros */
-    --color-highlight: rgba(0, 212, 170, 0.1); /* Fondo de elementos activos */
-    --color-success: #00c853; /* Verde para éxito */
-    --color-warning: #ffcc00; /* Amarillo para advertencias */
-    --color-error: #ff4444; /* Rojo para errores */
+    --color-bg-dark: #F7F8FA;
+    --color-bg-light: #FCF9EA;
+    --color-bg-card: #B4DEBD;
+    --color-accent: #63A361;
+    --color-accent-light: #00ffcc;
+    --color-accent-dark: #007a5c;
+    --color-secondary: #B0CE88;
+    --color-text-primary: #000000;
+    --color-text-secondary: #000000;
+    --color-text-muted: #000000;
+    --color-border: #63A361;
+    --color-border-light: #63A361;
+    --color-highlight: rgba(0, 212, 170, 0.1);
+    --color-success: #00c853;
+    --color-warning: #ffcc00;
+    --color-error: #ff4444;
 
     /* Tipografía */
     --font-family-code: 'SF Mono', 'Monaco', 'Consolas', monospace;
@@ -38,7 +38,7 @@
     --spacing-xxl: 48px;
 
     /* Efectos */
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-sm: 0 2px 4px rgba(202, 38, 38, 0.2);
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.3);
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -213,14 +213,13 @@ button:focus:not(:active)::after {
 
 /* Botón principal: Detectar */
 #detectBtn {
-    background-color: var(--color-accent);
-    color: var(--color-bg-dark);
+    background-color: #B4DEBD;
+    border-color: #63A361;
+    color: #000000;
     box-shadow: var(--shadow);
 }
 
 #detectBtn:hover {
-    background-color: var(--color-accent-light);
-    transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 }
 
@@ -230,15 +229,13 @@ button:focus:not(:active)::after {
 
 /* Botón secundario: Limpiar */
 #clearBtn {
-    background-color: transparent;
+    background-color: #B0CE88;
     color: var(--color-text-secondary);
     border: 1px solid var(--color-border-light);
 }
 
 #clearBtn:hover {
-    color: var(--color-text-primary);
-    border-color: var(--color-text-primary);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: #B0CE88
 }
 
 /* -------------------------------------- */
@@ -323,7 +320,7 @@ ul li {
 
 ul li::before {
     content: '▸';
-    color: var(--color-accent);
+    color: #000000;
     margin-right: var(--spacing-sm);
     font-size: 0.8rem;
 }
@@ -454,7 +451,7 @@ ul li:last-child {
 }
 
 .simulator h3::before {
-    content: '⚙️';
+    content: '⚙';
     margin-right: var(--spacing-sm);
     font-size: 1rem;
 }
@@ -465,7 +462,7 @@ ul li:last-child {
     margin-bottom: var(--spacing-lg);
     background-color: var(--color-bg-light);
     border: 1px solid var(--color-border-light);
-    color: var(--color-text-primary);
+    color: #000000;
     border-radius: var(--border-radius);
     font-size: 1rem;
     font-family: var(--font-family-code);
@@ -492,17 +489,17 @@ ul li:last-child {
 
 #stepBtn {
     background-color: var(--color-secondary);
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 #stepBtn:hover {
-    background-color: #3a5ae0;
+    background-color: #B0CE88;
     transform: translateY(-2px);
 }
 
 #runBtn {
     background-color: var(--color-accent);
-    color: var(--color-bg-dark);
+    color: #000000;
 }
 
 #runBtn:hover {
